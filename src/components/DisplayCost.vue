@@ -9,8 +9,12 @@
                 <p>{{ elem.price }}</p>
             </div>
         </div>
-        <input type="text" v-model="this.newCost.price">
-        <button v-on:click="costAdder">ADD COST</button>
+        <!-- Add new cost component -->
+        <div>
+            <input type="text" v-model.number="newCost.price">
+            <input type="text" v-model="newCost.name" placeholder="name cost">
+            <button v-on:click="costAdder(newCost)">ADD COST</button>
+        </div>
     </div>
 
 </template>
@@ -34,16 +38,22 @@ export default {
                 },
             ],
             newCost: {
-                id: '',
-                name: '',
+                id: "",
+                name: "",
                 price: 0,
             }
         }
     },
     methods: {
         costAdder() {
-            console.log('')
+            console.log(this.newCost.price)
+            this.newCost = { id: this.costList.length + 1, name: this.newCost.name, price: this.newCost.price }
+            this.costList = [...this.costList, this.newCost]
+            this.costCleaner()
         },
+        costCleaner() {
+            this.newCost = { id: "", name: "", price: 0 }
+        }
     }
 }
 
