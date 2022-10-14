@@ -2,24 +2,18 @@
 
     <div>
         <h1>COST</h1>
-        <!-- Data output component -->
-        <div class="cost_elements">
-            <div class="cost_element" v-for="elem in this.costList" v-bind:key="elem.id">
-                <p>{{ elem.name }}</p>
-                <p>{{ elem.price }}</p>
-            </div>
-        </div>
+        <DisplayPagination v-bind:costList="costList" />
         <!-- Add new cost component -->
-        <div>
-            <input type="text" v-model.number="newCost.price">
-            <input type="text" v-model="newCost.name" placeholder="name cost">
-            <button v-on:click="costAdder(newCost)">ADD COST</button>
-        </div>
+        <button v-on:click="hiddenHandler">{{ isHidden ? "ADD NEW COST" : "CLOSE FORM" }}</button>
+        <DisplayAdder v-show="!isHidden" v-on:newCost="costHandler" v-on:errorHandler="errorHandler"
+            v-bind:isError="isError" v-bind:costList="costList" />
+        <p v-show="isError" v-bind:class="{ 'text-danger': isError }">ERROR</p>
     </div>
 
 </template>
 
 <script>
+import DisplayPagination from './DisplayPagination.vue';
 
 export default {
     name: "DisplayCostVue",
@@ -30,35 +24,59 @@ export default {
                     id: 1,
                     name: "eat",
                     price: 250,
+                    date: "",
                 },
                 {
                     id: 2,
                     name: "home",
                     price: 15000,
+                    date: "",
+                },
+                {
+                    id: 3,
+                    name: "car",
+                    price: 25000,
+                    date: "",
+                },
+                {
+                    id: 4,
+                    name: "dance",
+                    price: 5000,
+                    date: "",
+                },
+                {
+                    id: 5,
+                    name: "cafe",
+                    price: 750,
+                    date: "",
+                },
+                {
+                    id: 6,
+                    name: "water",
+                    price: 1000,
+                    date: "",
                 },
             ],
-            newCost: {
-                id: "",
-                name: "",
-                price: 0,
-            }
-        }
+            isError: false,
+            isHidden: true,
+        };
     },
     methods: {
-        costAdder() {
-            console.log(this.newCost.price)
-            this.newCost = { id: this.costList.length + 1, name: this.newCost.name, price: this.newCost.price }
-            this.costList = [...this.costList, this.newCost]
-            this.costCleaner()
+        hiddenHandler() {
+            this.isHidden = !this.isHidden;
         },
-        costCleaner() {
-            this.newCost = { id: "", name: "", price: 0 }
-        }
-    }
+        costHandler(newCost) {
+            this.costList = [...this.costList, newCost];
+        },
+        errorHandler(error) {
+            this.isError = error;
+        },
+    },
+    components: { DisplayPagination }
 }
 
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 @import "../assets/DisplayCost.scss";
 </style>
