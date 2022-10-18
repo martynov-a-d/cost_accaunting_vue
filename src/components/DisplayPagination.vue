@@ -5,6 +5,7 @@
         <DataOutput v-bind:costList="this.pageList" />
         <button v-for="elem in costPagination" v-bind:key="elem.id" v-on:click="choisePagination(elem.id)">{{ elem.name
         }}</button>
+        <p>{{ this.costList.length }}</p>
     </div>
 
 </template>
