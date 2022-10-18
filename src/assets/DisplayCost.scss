@@ -4,30 +4,6 @@ h1 {
     color: $color_1;
 }
 
-.cost_table {
-    width: 50vw;
-}
-
-// .cost_elements {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: space-around;
-// }
-
-.cost_element {
-    display: flex;
-    justify-content: space-around;
-}
-
-.cost_element_param {
-    display: block;
-}
-
-.cost_headers {
-    display: flex;
-    justify-content: space-around;
-}
-
 .cost_new_param {
     border-color: transparent;
     outline: 0;
