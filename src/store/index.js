@@ -24,62 +24,16 @@ const store = new Vuex.Store({
     },
     actions: {
         setPaymentListData({ commit }) {
-            setTimeout(() => {
-                const paymentData = [
-                    {
-                        id: 1,
-                        name: "eat",
-                        price: 250,
-                        date: "",
-                    },
-                    {
-                        id: 2,
-                        name: "home",
-                        price: 15000,
-                        date: "",
-                    },
-                    {
-                        id: 3,
-                        name: "car",
-                        price: 25000,
-                        date: "",
-                    },
-                    {
-                        id: 4,
-                        name: "dance",
-                        price: 5000,
-                        date: "",
-                    },
-                    {
-                        id: 5,
-                        name: "cafe",
-                        price: 750,
-                        date: "",
-                    },
-                    {
-                        id: 6,
-                        name: "water",
-                        price: 1000,
-                        date: "",
-                    },
-                ]
-                commit('initionCosts', paymentData)
-            }, 1000)
+            const API = "https://raw.githubusercontent.com/martynov-a-d/cost_accaunting_vue/martynov-a-d/vuex_connection/src/data.json"
+            fetch(API)
+                .then(response => response.json())
+                .then(paymentData => commit('initionCosts', paymentData))
         },
         setCategoryList({ commit }) {
-            setTimeout(() => {
-                const categorysData = [
-                    {
-                        id: 1,
-                        name: "car",
-                    },
-                    {
-                        id: 2,
-                        name: "home",
-                    },
-                ]
-                commit('initionCategory', categorysData)
-            }, 1000)
+            const API = ""
+            fetch(API)
+                .then(response => response.json())
+                .then(categorysData => commit('initionCategory', categorysData))
         }
     },
     mutations: {
