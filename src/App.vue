@@ -13,7 +13,7 @@ import DisplayAdder from './components/DisplayAdder.vue';
 import DisplayPagination from './components/DisplayPagination.vue'
 Vue.component("DisplayAdder", DisplayAdder);
 Vue.component("DataOutput", DataOutput);
-Vue.component("PaginationBlock", DisplayPagination)
+Vue.component("DisplayPagination", DisplayPagination)
 export default {
   name: 'App',
   components: {
