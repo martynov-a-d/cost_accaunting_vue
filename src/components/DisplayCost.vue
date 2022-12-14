@@ -2,77 +2,66 @@
 
     <div>
         <h1>COST</h1>
-        <DisplayPagination v-bind:costList="costList" />
+        <h2>{{ fetchUser.name }}</h2>
+        <DisplayPagination v-bind:costList="fetchData ? fetchData : []" />
         <!-- Add new cost component -->
-        <button v-on:click="hiddenHandler">{{ isHidden ? "ADD NEW COST" : "CLOSE FORM" }}</button>
-        <DisplayAdder v-show="!isHidden" v-on:newCost="costHandler" v-on:errorHandler="errorHandler"
-            v-bind:isError="isError" v-bind:costList="costList" />
+        <button v-on:click="changeHidden('cost')">
+            {{ getSetups.isHiddenAdderCost ? "ADD NEW COST" : "CLOSE FORM" }}
+        </button>
+        <button v-on:click="changeHidden('category')">
+            {{ getSetups.isHiddenAdderCategory ? "ADD NEW CATEGORY" : "CLOSE FORM" }}
+        </button>
+        <DisplayAdder v-show="!getSetups.isHiddenAdderCost" v-on:newCost="addNewCost" v-on:errorHandler="errorHandler"
+            v-bind:isError="isError" v-bind:costList="fetchData" />
         <p v-show="isError" v-bind:class="{ 'text-danger': isError }">ERROR</p>
+        <!--  Drop menu Category  -->
+        <DisplayCategoryVue v-bind:fetchCategory="fetchCategory" v-bind:getSetups="getSetups"
+            v-on:errorHandler="errorHandler" v-on:addNewCategory="addNewCategory" />
     </div>
 
 </template>
 
 <script>
-import DisplayPagination from './DisplayPagination.vue';
+import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
 
 export default {
     name: "DisplayCostVue",
     data() {
         return {
-            costList: [
-                {
-                    id: 1,
-                    name: "eat",
-                    price: 250,
-                    date: "",
-                },
-                {
-                    id: 2,
-                    name: "home",
-                    price: 15000,
-                    date: "",
-                },
-                {
-                    id: 3,
-                    name: "car",
-                    price: 25000,
-                    date: "",
-                },
-                {
-                    id: 4,
-                    name: "dance",
-                    price: 5000,
-                    date: "",
-                },
-                {
-                    id: 5,
-                    name: "cafe",
-                    price: 750,
-                    date: "",
-                },
-                {
-                    id: 6,
-                    name: "water",
-                    price: 1000,
-                    date: "",
-                },
-            ],
             isError: false,
-            isHidden: true,
         };
     },
+    created() {
+        this.setPaymentListData()
+        this.setCategoryList()
+        // this.initionCosts()
+    },
     methods: {
-        hiddenHandler() {
-            this.isHidden = !this.isHidden;
-        },
-        costHandler(newCost) {
-            this.costList = [...this.costList, newCost];
-        },
         errorHandler(error) {
             this.isError = error;
         },
+        ...mapMutations([
+            'initionCosts',
+            'addNewCost',
+            'addNewCategory',
+            'changeHidden'
+        ]),
+        ...mapActions([
+            'setPaymentListData',
+            'setCategoryList'
+        ])
     },
-    components: { DisplayPagination }
+    computed: {
+        ...mapState({
+
+        }),
+        ...mapGetters([
+            'fetchData',
+            'fetchUser',
+            'fetchCategory',
+            'getSetups'
+        ])
+    },
 }
 
 </script>

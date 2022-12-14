@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "name": "eat",
+        "price": 250,
+        "date": ""
+    },
+    {
+        "id": 2,
+        "name": "home",
+        "price": 15000,
+        "date": ""
+    },
+    {
+        "id": 3,
+        "name": "car",
+        "price": 25000,
+        "date": ""
+    },
+    {
+        "id": 4,
+        "name": "dance",
+        "price": 5000,
+        "date": ""
+    },
+    {
+        "id": 5,
+        "name": "cafe",
+        "price": 750,
+        "date": ""
+    },
+    {
+        "id": 6,
+        "name": "water",
+        "price": 1000,
+        "date": ""
+    }
+]
