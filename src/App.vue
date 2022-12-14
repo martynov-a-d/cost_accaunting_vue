@@ -10,10 +10,12 @@ import DisplayCostVue from './components/DisplayCost.vue';
 import Vue from 'vue';
 import DataOutput from './components/DataOutput.vue';
 import DisplayAdder from './components/DisplayAdder.vue';
-import DisplayPagination from './components/DisplayPagination.vue'
+import DisplayPagination from './components/DisplayPagination.vue';
+import DisplayCategoryVue from './components/DisplayCategory.vue';
 Vue.component("DisplayAdder", DisplayAdder);
 Vue.component("DataOutput", DataOutput);
 Vue.component("DisplayPagination", DisplayPagination)
+Vue.component("DisplayCategoryVue", DisplayCategoryVue)
 export default {
   name: 'App',
   components: {

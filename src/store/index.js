@@ -30,7 +30,7 @@ const store = new Vuex.Store({
                 .then(paymentData => commit('initionCosts', paymentData))
         },
         setCategoryList({ commit }) {
-            const API = ""
+            const API = "https://raw.githubusercontent.com/martynov-a-d/cost_accaunting_vue/martynov-a-d/vuex_connection/src/category.json"
             fetch(API)
                 .then(response => response.json())
                 .then(categorysData => commit('initionCategory', categorysData))
