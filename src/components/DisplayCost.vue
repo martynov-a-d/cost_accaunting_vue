@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
+import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
 
 export default {
     name: "DisplayCostVue",
@@ -32,8 +32,8 @@ export default {
         };
     },
     created() {
-        this.setPaymentListData()
-        this.setCategoryList()
+        // this.setPaymentListData()
+        // this.setCategoryList()
         // this.initionCosts()
     },
     methods: {

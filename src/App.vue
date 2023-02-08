@@ -1,25 +1,41 @@
 <template>
   <div id="app">
-    <DisplayCostVue />
+    <!-- <DisplayCostVue /> -->
+    <router-link to="/">Dashboard</router-link>
+    <router-link to="/about">About</router-link>
+    <router-view />
   </div>
 </template>
 
 <script>
 
-import DisplayCostVue from './components/DisplayCost.vue';
-import Vue from 'vue';
-import DataOutput from './components/DataOutput.vue';
-import DisplayAdder from './components/DisplayAdder.vue';
-import DisplayPagination from './components/DisplayPagination.vue';
-import DisplayCategoryVue from './components/DisplayCategory.vue';
-Vue.component("DisplayAdder", DisplayAdder);
-Vue.component("DataOutput", DataOutput);
+import DisplayCostVue from './components/DisplayCost.vue'
+import Vue from 'vue'
+import DataOutput from './components/DataOutput.vue'
+import DisplayAdder from './components/DisplayAdder.vue'
+import DisplayPagination from './components/DisplayPagination.vue'
+import DisplayCategoryVue from './components/DisplayCategory.vue'
+import { mapActions } from 'vuex'
+Vue.component("DisplayCostVue", DisplayCostVue)
+Vue.component("DisplayAdder", DisplayAdder)
+Vue.component("DataOutput", DataOutput)
 Vue.component("DisplayPagination", DisplayPagination)
 Vue.component("DisplayCategoryVue", DisplayCategoryVue)
 export default {
   name: 'App',
   components: {
-    DisplayCostVue,
+    // DisplayCostVue,
+  },
+  created() {
+    this.$router.push({ name: "dashboard" })
+    this.setPaymentListData()
+    this.setCategoryList()
+  },
+  methods: {
+    ...mapActions([
+      'setPaymentListData',
+      'setCategoryList'
+    ])
   }
 }
 
