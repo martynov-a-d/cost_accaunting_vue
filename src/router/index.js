@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import DisplayCostVue from "../components/DisplayCost"
-import DisplayAdder from "../components/DisplayAdder"
 import About from "../components/About"
 import Page404 from "../components/Page404"
+import DisplayAdder from "../components/DisplayAdder"
 Vue.use(Router);
 
 export default new Router({

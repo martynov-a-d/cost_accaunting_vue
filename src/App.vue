@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <!-- <DisplayCostVue /> -->
-    <router-link to="/">Dashboard</router-link>
+    <router-link to="/dashboard/1">Dashboard</router-link>
+    <router-link to="/add">Add COST</router-link>
     <router-link to="/about">About</router-link>
     <router-view />
   </div>

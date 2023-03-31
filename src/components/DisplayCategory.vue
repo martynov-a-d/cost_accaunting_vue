@@ -1,17 +1,15 @@
 <template>
-
     <div>
-        <!--  Drop menu Category  -->
-        <select v-show="fetchCategory.length" name="choiseCategory" id="choiseCategory">
-            <option v-for="elem in fetchCategory" v-bind:key="elem.id">{{ elem.name }}</option>
-        </select>
         <!--  Add new category component  -->
         <div v-show="!getSetups.isHiddenAdderCategory">
             <input type="text" placeholder="category name" v-model="newCategory.name">
             <button v-on:click="this.createCategory">ADD CATEGORY</button>
         </div>
+        <!--  Drop menu Category  -->
+        <select v-show="fetchCategory.length" name="choiseCategory" id="choiseCategory">
+            <option v-for="elem in fetchCategory" v-bind:key="elem.id">{{ elem.name }}</option>
+        </select>
     </div>
-
 </template>
 
 <script>
