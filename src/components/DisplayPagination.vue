@@ -1,5 +1,4 @@
 <template>
-
     <div>
         <!-- Data output component -->
         <DataOutput v-bind:costList="this.pageList" />
@@ -7,7 +6,6 @@
         }}</button>
         <p>{{ this.costList.length }}</p>
     </div>
-
 </template>
 
 <script>
@@ -26,14 +24,14 @@ export default {
             pagesPagination: 5,
             pageList: [],
             padList: [],
-            pageSelect: "",
+            pageSelect: this.$route.params.page,
         }
     },
     beforeMount() {
     },
     mounted() {
         this.pageHandler()
-        this.choisePagination(1)
+        this.choisePagination(this.$route.params.page)
     },
     beforeUpdate() {
         this.paginationClean()
@@ -61,13 +59,21 @@ export default {
             }
         },
         choisePagination(elem) {
+            if (isNaN(elem)) {
+                elem = "1"
+            }
             this.pageSelect = elem
+            this.updatePageParams(elem)
             this.updatePaginstion()
         },
         updatePaginstion() {
             let page = this.pageSelect * this.pagesPagination
             this.pageList = this.padList
             this.pageList = this.pageList.slice([page - 5], [page])
+        },
+        updatePageParams(elem) {
+            this.$route.params.page = `${elem}`
+            this.$router.push({ name: "dashboard" })
         }
     },
     computed: {

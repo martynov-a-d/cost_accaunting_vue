@@ -1,16 +1,23 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import DisplayCostVue from "../components/DisplayCost"
+import DisplayAdder from "../components/DisplayAdder"
 import About from "../components/About"
 import Page404 from "../components/Page404"
 Vue.use(Router);
 
 export default new Router({
+    mode: "history",
     routes: [
         {
-            path: "/",
+            path: "/dashboard/:page",
             name: "dashboard",
             component: DisplayCostVue
+        },
+        {
+            path: "/add",
+            name: "add",
+            component: DisplayAdder
         },
         {
             path: "/about",
@@ -27,4 +34,6 @@ export default new Router({
             redirect: { name: "notFound" }
         }
     ]
-});
+})
+
+// Router.beforeResolve((next) => { next() })
