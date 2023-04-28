@@ -10,6 +10,11 @@
         <button v-on:click="changeHidden('category')">
             {{ getSetups.isHiddenAdderCategory ? "ADD NEW CATEGORY" : "CLOSE FORM" }}
         </button>
+        <div>
+            <router-link to="/add/payment/Food?value=200">Food</router-link>
+            <router-link to="/add/payment/Transport?value=50">Transport</router-link>
+            <router-link to="/add/payment/Entertainment?value=2000">Entertainment</router-link>
+        </div>
         <!-- Add new cost component -->
         <DisplayAdder v-show="!getSetups.isHiddenAdderCost" v-on:newCost="addNewCost" v-on:errorHandler="errorHandler"
             v-bind:isError="isError" v-bind:costList="fetchData" />
@@ -29,11 +34,6 @@ export default {
         return {
             isError: false,
         };
-    },
-    created() {
-        // this.setPaymentListData()
-        // this.setCategoryList()
-        // this.initionCosts()
     },
     methods: {
         errorHandler(error) {

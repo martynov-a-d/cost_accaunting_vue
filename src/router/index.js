@@ -6,17 +6,26 @@ import Page404 from "../components/Page404"
 import DisplayAdder from "../components/DisplayAdder"
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
     mode: "history",
     routes: [
+        {
+            path: "/",
+            redirect: { name: "dashboard" }
+        },
         {
             path: "/dashboard/:page",
             name: "dashboard",
             component: DisplayCostVue
         },
         {
-            path: "/add",
-            name: "add",
+            path: "/add/payment",
+            name: "addPayment",
+            component: DisplayAdder
+        },
+        {
+            path: "/add/payment/:category",
+            name: "addPaymentURL",
             component: DisplayAdder
         },
         {
@@ -36,4 +45,12 @@ export default new Router({
     ]
 })
 
-// Router.beforeResolve((next) => { next() })
+router.beforeEach((to, from, next) => {
+    if (to.name === "addPaymentURL") {
+        next()
+    } else {
+        next()
+    }
+})
+
+export default (router)

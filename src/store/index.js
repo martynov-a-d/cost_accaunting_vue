@@ -23,19 +23,27 @@ const store = new Vuex.Store({
         getSetups: state => state.setups,
     },
     actions: {
-        setPaymentListData({ commit }) {
+        getPaymentListData({ commit }) {
             const API = "https://raw.githubusercontent.com/martynov-a-d/cost_accaunting_vue/martynov-a-d/vuex_connection/src/data.json"
             fetch(API)
                 .then(response => response.json())
                 .then(paymentData => commit('initionCosts', paymentData))
                 .catch(error => console.log(error))
         },
-        setCategoryList({ commit }) {
+        getCategoryList({ commit }) {
             const API = "https://raw.githubusercontent.com/martynov-a-d/cost_accaunting_vue/martynov-a-d/vuex_connection/src/category.json"
             fetch(API)
                 .then(response => response.json())
                 .then(categorysData => commit('initionCategory', categorysData))
                 .catch(error => console.log(error))
+        },
+        setPaymentListData(elem) {
+            const API = "https://raw.githubusercontent.com/martynov-a-d/cost_accaunting_vue/martynov-a-d/vuex_connection/src/data.json"
+            const ListData = elem
+            fetch(API, {
+                method: "PUT",
+                body: ListData,
+            })
         }
     },
     mutations: {

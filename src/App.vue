@@ -2,7 +2,7 @@
   <div id="app">
     <!-- <DisplayCostVue /> -->
     <router-link to="/dashboard/1">Dashboard</router-link>
-    <router-link to="/add">Add COST</router-link>
+    <router-link to="/add/payment">Add COST</router-link>
     <router-link to="/about">About</router-link>
     <router-view />
   </div>
@@ -25,17 +25,15 @@ Vue.component("DisplayCategoryVue", DisplayCategoryVue)
 export default {
   name: 'App',
   components: {
-    // DisplayCostVue,
   },
   created() {
-    this.$router.push({ name: "dashboard" })
-    this.setPaymentListData()
-    this.setCategoryList()
+    this.getPaymentListData()
+    this.getCategoryList()
   },
   methods: {
     ...mapActions([
-      'setPaymentListData',
-      'setCategoryList'
+      'getPaymentListData',
+      'getCategoryList'
     ])
   }
 }
