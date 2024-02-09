@@ -10,6 +10,8 @@
 
 <script>
 
+import {mapMutations} from "vuex";
+
 export default {
     name: "PaginationBlock",
     props: {
@@ -25,6 +27,7 @@ export default {
             pageList: [],
             padList: [],
             pageSelect: this.$route.params.page,
+            ModalWindow: '',
         }
     },
     beforeMount() {
@@ -32,6 +35,8 @@ export default {
     mounted() {
         this.pageHandler()
         this.choisePagination(this.$route.params.page)
+        this.$modal.EventBus.$on('edit', () => {this.modalEditHandler()})
+        this.$modal.EventBus.$on('delete', (e) => {this.modalDeleteHandler(e)})
     },
     beforeUpdate() {
         this.paginationClean()
@@ -48,7 +53,7 @@ export default {
         },
         pageHandler() {
             let remainderDivision = this.costList.length / this.pagesPagination;
-            if (this.costList.length % this.pagesPagination == 0) {
+            if (this.costList.length % this.pagesPagination === 0) {
                 for (let i = 1; i <= remainderDivision; i++) {
                     this.costPagination.push({ id: i, name: i })
                 }
@@ -74,7 +79,17 @@ export default {
         updatePageParams(elem) {
             this.$route.params.page = `${elem}`
             this.$router.push({ name: "dashboard" })
-        }
+        },
+        modalEditHandler() {
+            console.log('editHandler')
+            console.log(this.pageList)
+        },
+        modalDeleteHandler(e) {
+            this.delCost(e)
+      },
+        ...mapMutations(
+            ['delCost']
+        ),
     },
     computed: {
 

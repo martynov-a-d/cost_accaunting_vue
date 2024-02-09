@@ -17,15 +17,16 @@ import DisplayAdder from './components/DisplayAdder.vue'
 import DisplayPagination from './components/DisplayPagination.vue'
 import DisplayCategoryVue from './components/DisplayCategory.vue'
 import { mapActions } from 'vuex'
+import ModalWindow from "@/components/ModalWindow.vue";
 Vue.component("DisplayCostVue", DisplayCostVue)
 Vue.component("DisplayAdder", DisplayAdder)
 Vue.component("DataOutput", DataOutput)
 Vue.component("DisplayPagination", DisplayPagination)
 Vue.component("DisplayCategoryVue", DisplayCategoryVue)
+Vue.component("ModalWindow", ModalWindow)
 export default {
   name: 'App',
-  components: {
-  },
+  components: {},
   created() {
     this.getPaymentListData()
     this.getCategoryList()

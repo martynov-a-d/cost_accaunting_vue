@@ -23,14 +23,14 @@ const store = new Vuex.Store({
         getSetups: state => state.setups,
     },
     actions: {
-        getPaymentListData({ commit }) {
+        getPaymentListData({commit}) {
             const API = "https://raw.githubusercontent.com/martynov-a-d/cost_accaunting_vue/martynov-a-d/vuex_connection/src/data.json"
             fetch(API)
                 .then(response => response.json())
                 .then(paymentData => commit('initionCosts', paymentData))
                 .catch(error => console.log(error))
         },
-        getCategoryList({ commit }) {
+        getCategoryList({commit}) {
             const API = "https://raw.githubusercontent.com/martynov-a-d/cost_accaunting_vue/martynov-a-d/vuex_connection/src/category.json"
             fetch(API)
                 .then(response => response.json())
@@ -39,10 +39,9 @@ const store = new Vuex.Store({
         },
         setPaymentListData(elem) {
             const API = "https://raw.githubusercontent.com/martynov-a-d/cost_accaunting_vue/martynov-a-d/vuex_connection/src/data.json"
-            const ListData = elem
             fetch(API, {
                 method: "PUT",
-                body: ListData,
+                body: elem,
             })
         }
     },
@@ -73,7 +72,18 @@ const store = new Vuex.Store({
         },
         addNewCategory(state, newCategory) {
             state.categorys = [...state.categorys, newCategory]
-        }
+        },
+        delCost(state, delElem) {
+            let elem = 0
+            let massive = this.state.costs
+            for(let i = 0; i < massive.length; i++) {
+                if(delElem.id === massive[i].id) {
+                    elem = i
+                }
+            }
+            state.costs.splice(elem, 1)
+
+        },
     },
 })
 

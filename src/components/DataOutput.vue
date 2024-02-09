@@ -8,9 +8,11 @@
         </div>
         <div class="cost_elements">
             <div class="cost_element" v-for="elem in this.costList" v-bind:key="elem.id">
+                <p class="cost_element_param">#</p>
                 <p class="cost_element_param">{{ elem.id }}</p>
                 <p class="cost_element_param">{{ elem.name }}</p>
                 <p class="cost_element_param">{{ elem.price }}</p>
+                <ModalWindow v-bind:modalwindow="elem" >{{elem.id}}</ModalWindow>
             </div>
         </div>
     </div>
@@ -18,6 +20,7 @@
 </template>
 
 <script>
+
 
 export default {
     name: "DataOutput",

@@ -5,7 +5,7 @@
             <input class="cost_new_param" type="text" v-model="newCost.name" placeholder="payment description">
             <button v-on:click="costAdder">ADD COST</button>
         </div>
-        <p v-show="isError" v-bind:class="{ 'text-danger': isError }">ERROR</p>
+        <p v-show="isError" v-bind:class="{ 'text-danger': isError }">{{ isDescription }}</p>
         <p v-show="isHidden">WELL</p>
     </div>
 </template>
@@ -24,7 +24,8 @@ export default {
                 price: "",
                 date: "",
             },
-            isError: "",
+            isError: false,
+            isDescription: "",
             isHidden: false,
         }
     },
@@ -33,16 +34,30 @@ export default {
     },
     methods: {
         costAdder: function () {
-            this.errorHandler(false)
-            if (this.newCost.price === "") {
-                this.errorHandler(true)
+            this.errorHandler(false, "")
+            if (this.newCost.price === "" || !isFinite(this.newCost.price)) {
+                this.errorHandler(true, "Enter the figure")
             } else if (this.newCost.name === "") {
-                this.errorHandler(true)
+                this.errorHandler(true, "Enter the name")
             } else {
-                this.newCost = { id: this.fetchData.length + 1, name: this.newCost.name, price: this.newCost.price };
+                this.newCost = { id: this.idHandler(), name: this.newCost.name, price: this.newCost.price };
                 this.addNewCost(this.newCost)
                 this.costCleaner();
             }
+        },
+        idHandler: function () {
+          let massive = this.fetchData
+          let startElem = 0
+          let elem = ""
+          for(let i = 0; i < massive.length; i++) {
+            if (startElem < massive[i].id) {
+              elem = massive[i].id + 1
+            } else {
+              console.log("error - idHandler()")
+            }
+          }
+          return elem
+
         },
         costCleaner: function () {
             this.newCost = { id: "", name: "", price: "" };
@@ -52,11 +67,12 @@ export default {
             this.newCost.price = this.$route.query.value
             if (this.newCost.name !== undefined) {
                 this.costAdder()
-                this.isHidden = this.isError ? false : true
+                this.isHidden = !this.isError
             }
         },
-        errorHandler(error) {
-            this.isError = error;
+        errorHandler(error, param) {
+            this.isError = error
+            this.isDescription = param
         },
         ...mapMutations([
             'addNewCost'
