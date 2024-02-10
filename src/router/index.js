@@ -15,7 +15,7 @@ const router = new Router({
             component: () => import("../components/DisplayCost")
         },
         {
-            path: "/add/payment",
+            path: "/add/payment/",
             name: "addPayment",
             component: () => import("../components/DisplayAdder")
         },

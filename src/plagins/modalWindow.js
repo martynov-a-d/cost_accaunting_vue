@@ -10,8 +10,8 @@ export default {
 
             EventBus: new Vue(),
 
-            edit() {
-                this.EventBus.$emit('edit')
+            edit(e) {
+                this.EventBus.$emit('edit', e)
             },
 
             deleteHandler(e) {

@@ -35,7 +35,6 @@ export default {
     mounted() {
         this.pageHandler()
         this.choisePagination(this.$route.params.page)
-        this.$modal.EventBus.$on('edit', () => {this.modalEditHandler()})
         this.$modal.EventBus.$on('delete', (e) => {this.modalDeleteHandler(e)})
     },
     beforeUpdate() {
@@ -80,15 +79,11 @@ export default {
             this.$route.params.page = `${elem}`
             this.$router.push({ name: "dashboard" })
         },
-        modalEditHandler() {
-            console.log('editHandler')
-            console.log(this.pageList)
-        },
         modalDeleteHandler(e) {
             this.delCost(e)
       },
         ...mapMutations(
-            ['delCost']
+            ['delCost', 'editCost']
         ),
     },
     computed: {

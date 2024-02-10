@@ -17,7 +17,7 @@
         </div>
         <!-- Add new cost component -->
         <DisplayAdder v-show="!getSetups.isHiddenAdderCost" v-on:newCost="addNewCost" v-on:errorHandler="errorHandler"
-            v-bind:isError="isError" v-bind:costList="fetchData" />
+            v-bind:actionHandler="actionHandler" v-bind:isError="isError" />
         <p v-show="isError" v-bind:class="{ 'text-danger': isError }">ERROR</p>
         <!--  Drop menu Category  -->
         <DisplayCategoryVue v-bind:fetchCategory="fetchCategory" v-bind:getSetups="getSetups"
@@ -33,6 +33,7 @@ export default {
     data() {
         return {
             isError: false,
+            actionHandler: "addNewCost",
         };
     },
     methods: {

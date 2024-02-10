@@ -73,16 +73,23 @@ const store = new Vuex.Store({
         addNewCategory(state, newCategory) {
             state.categorys = [...state.categorys, newCategory]
         },
+        editCost(state, e) {
+            let massive = this.state.costs
+            for(let i = 0; i < massive.length; i++ ) {
+                if(e.id === massive[i].id) {
+                    massive[i].name = e.name
+                    massive[i].price = e.price
+                    state.costs = massive
+                }
+            }
+        },
         delCost(state, delElem) {
-            let elem = 0
             let massive = this.state.costs
             for(let i = 0; i < massive.length; i++) {
                 if(delElem.id === massive[i].id) {
-                    elem = i
+                    state.costs.splice(i, 1)
                 }
             }
-            state.costs.splice(elem, 1)
-
         },
     },
 })

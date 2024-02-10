@@ -4,9 +4,10 @@
       <p v-on:click="modalWindowShowner = !modalWindowShowner" v-if="!modalWindowShowner">show</p>
       <p v-on:click="modalWindowShowner = !modalWindowShowner" v-if="modalWindowShowner">hide</p>
       <div v-show="modalWindowShowner">
-        <p v-on:click="$modal.edit()">Edit</p>
+        <p v-on:click="test()">Edit</p>
         <p v-on:click="$modal.deleteHandler(modalwindow)">Delete</p>
       </div>
+      <DisplayAdder v-show="editShowner" v-bind:actionHandler="actionHandler" />
     </div>
   </transition>
 </template>
@@ -32,8 +33,18 @@ export default {
   },
   data() {
       return {
-        modalWindowShowner: false
+        modalWindowShowner: false,
+        editShowner: false,
+        actionHandler: "editCost",
+
       }
+  },
+  methods: {
+    test(){
+      this.$modal.edit(this.modalwindow)
+      this.editShowner = !this.editShowner
+      this.modalWindowShowner = !this.modalWindowShowner
+    }
   },
 }
 </script>

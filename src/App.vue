@@ -2,7 +2,7 @@
   <div id="app">
     <!-- <DisplayCostVue /> -->
     <router-link to="/dashboard/1">Dashboard</router-link>
-    <router-link to="/add/payment">Add COST</router-link>
+    <router-link to="/add/payment/addNewCost">Add COST</router-link>
     <router-link to="/about">About</router-link>
     <router-view />
   </div>
