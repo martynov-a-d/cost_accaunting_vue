@@ -8,8 +8,8 @@
         </div>
         <div class="cost_elements">
             <div class="cost_element" v-for="elem in this.costList" v-bind:key="elem.id">
-                <p class="cost_element_param">#</p>
-                <p class="cost_element_param">{{ elem.id }}</p>
+                <p class="cost_element_param">{{ countHandler(elem) }}</p>
+<!--                <p class="cost_element_param">{{ elem.id }}</p>-->
                 <p class="cost_element_param">{{ elem.name }}</p>
                 <p class="cost_element_param">{{ elem.price }}</p>
                 <ModalWindow v-bind:modalwindow="elem" >{{elem.id}}</ModalWindow>
@@ -33,8 +33,15 @@ export default {
         },
     },
     data() {
-        return {}
+        return {
+          test: 0
+        }
     },
+  methods: {
+      countHandler(elem) {
+        return this.costList.findIndex(e => e.id === elem.id) + 1
+      }
+  }
 }
 
 </script>

@@ -16,8 +16,8 @@
             <router-link to="/add/payment/Entertainment?value=2000">Entertainment</router-link>
         </div>
         <!-- Add new cost component -->
-        <DisplayAdder v-show="!getSetups.isHiddenAdderCost" v-on:newCost="addNewCost" v-on:errorHandler="errorHandler"
-            v-bind:actionHandler="actionHandler" v-bind:isError="isError" />
+        <DisplayAdder v-if="!getSetups.isHiddenAdderCost" v-on:newCost="addNewCost" v-on:errorHandler="errorHandler" @closeHandler="changeHidden('cost')"
+            v-bind:actionHandler="actionHandler" v-bind:isPropHidden="!getSetups.isHiddenAdderCost" v-bind:isError="isError" />
         <p v-show="isError" v-bind:class="{ 'text-danger': isError }">ERROR</p>
         <!--  Drop menu Category  -->
         <DisplayCategoryVue v-bind:fetchCategory="fetchCategory" v-bind:getSetups="getSetups"
