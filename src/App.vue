@@ -1,10 +1,17 @@
 <template>
   <div id="app">
     <!-- <DisplayCostVue /> -->
-    <router-link to="/dashboard/1">Dashboard</router-link>
-    <router-link to="/add/payment/addNewCost">Add COST</router-link>
-    <router-link to="/about">About</router-link>
-    <router-view />
+    <header>
+      <router-link to="/dashboard/1">Dashboard</router-link>
+      <router-link to="/add/payment/addNewCost">Add COST</router-link>
+      <router-link to="/about">About</router-link>
+    </header>
+    <div class="conteiner">
+      <router-view />
+    </div>
+    <footer>
+      <h1>FOOTER</h1>
+    </footer>
   </div>
 </template>
 
@@ -42,16 +49,5 @@ export default {
 </script>
 
 <style lang="scss">
-* {
-  margin: 0 auto;
-}
-
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import "assets/App";
 </style>

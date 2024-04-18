@@ -1,9 +1,9 @@
 <template>
     <div>
-        <div v-show="!isHidden">
+        <div v-show="!isHidden" class="display_adder">
             <input class="cost_new_param" type="text" v-model="newCost.price" placeholder="payment amount">
             <input class="cost_new_param" type="text" v-model="newCost.name" placeholder="payment description">
-            <button v-on:click="costAdder(propAction)">{{ adderHandler ? "ADD COST" : "EDIT COST" }}</button>
+            <button class="btn_adder" v-on:click="costAdder(propAction)">{{ adderHandler ? "ADD COST" : "EDIT COST" }}</button>
         </div>
         <p v-show="isError" v-bind:class="{ 'text-danger': isError }">{{ isDescription }}</p>
         <p v-show="isStatus">WELL</p>

@@ -4,13 +4,15 @@
         <h2>{{ fetchUser.name }}</h2>
         <DisplayPagination v-bind:costList="fetchData ? fetchData : []" />
         <!-- Button for Block new cost and category -->
-        <button v-on:click="changeHidden('cost')">
+        <div class="btn_block_hot">
+          <button v-on:click="changeHidden('cost')">
             {{ getSetups.isHiddenAdderCost ? "ADD NEW COST" : "CLOSE FORM" }}
-        </button>
-        <button v-on:click="changeHidden('category')">
+          </button>
+          <button v-on:click="changeHidden('category')">
             {{ getSetups.isHiddenAdderCategory ? "ADD NEW CATEGORY" : "CLOSE FORM" }}
-        </button>
-        <div>
+          </button>
+        </div>
+        <div class="navigation_link">
             <router-link to="/add/payment/Food?value=200">Food</router-link>
             <router-link to="/add/payment/Transport?value=50">Transport</router-link>
             <router-link to="/add/payment/Entertainment?value=2000">Entertainment</router-link>

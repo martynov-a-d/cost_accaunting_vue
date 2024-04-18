@@ -2,7 +2,7 @@
     <div>
         <!--  Add new category component  -->
         <div v-show="!getSetups.isHiddenAdderCategory">
-            <input type="text" placeholder="category name" v-model="newCategory.name">
+            <input class="category_new_param" type="text" placeholder="category name" v-model="newCategory.name">
             <button v-on:click="this.createCategory">ADD CATEGORY</button>
         </div>
         <!--  Drop menu Category  -->
@@ -50,3 +50,7 @@ export default {
 }
 
 </script>
+
+<style lang="scss" scoped>
+@import "../assets/DisplayCost.scss";
+</style>

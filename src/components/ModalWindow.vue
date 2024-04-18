@@ -1,10 +1,10 @@
 <template>
   <transition name="modalWindowShownerFade">
     <div>
-      <p v-on:click="modalWindowShowner = !modalWindowShowner" v-if="!modalWindowShowner">show</p>
-      <p v-on:click="modalWindowShowner = !modalWindowShowner" v-if="modalWindowShowner">hide</p>
-      <div v-show="modalWindowShowner">
-        <p v-on:click="test()">Edit</p>
+      <p v-on:click="modalWindowShowner = !modalWindowShowner" v-if="!modalWindowShowner">:</p>
+      <p v-on:click="modalWindowShowner = !modalWindowShowner" v-if="modalWindowShowner">x</p>
+      <div id="modalWindow" v-show="modalWindowShowner">
+        <p v-on:click="editHandler()">Edit</p>
         <p v-on:click="$modal.deleteHandler(modalwindow)">Delete</p>
       </div>
       <DisplayAdder v-show="editShowner" v-bind:actionHandler="actionHandler" />
@@ -36,11 +36,10 @@ export default {
         modalWindowShowner: false,
         editShowner: false,
         actionHandler: "editCost",
-
       }
   },
   methods: {
-    test(){
+    editHandler(){
       this.$modal.edit(this.modalwindow)
       this.editShowner = !this.editShowner
       this.modalWindowShowner = !this.modalWindowShowner
@@ -50,6 +49,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  @import "../assets/DataOutput.scss";
+
   .modalWindowShownerFade-enter-active, .modalWindowShownerFade-leave-active {
     transition: opacity .5s;
   }

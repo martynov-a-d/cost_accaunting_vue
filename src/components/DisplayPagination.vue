@@ -1,9 +1,11 @@
 <template>
-    <div>
+    <div id="displayPagination_block">
         <!-- Data output component -->
         <DataOutput v-bind:costList="this.pageList" />
-        <button v-for="elem in costPagination" v-bind:key="elem.id" v-on:click="choisePagination(elem.id)">{{ elem.name
-        }}</button>
+        <div class="btn_pagination_block">
+          <button class="btn_paginations" v-for="elem in costPagination" v-bind:key="elem.id" v-on:click="choisePagination(elem.id)">{{ elem.name
+            }}</button>
+        </div>
         <p>{{ this.costList.length }}</p>
     </div>
 </template>
@@ -92,3 +94,7 @@ export default {
 }
 
 </script>
+
+<style lang="scss" scoped>
+@import "../assets/DisplayCost.scss";
+</style>

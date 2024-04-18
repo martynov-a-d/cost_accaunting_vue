@@ -1,0 +1,104 @@
+//  the main colors
+//
+$color_1: #635087;
+$color_2: #FFFFFF;
+$color_3: #2c3e50;
+$color_attention: red;
+
+//  margin after block
+//
+$marginAFb: 20px;
+
+//  emet error (nowrap) w3o +
+//
+$wrapNowrap: nowrap;
+
+//  mixins
+//
+@mixin first_style {
+  background-color: $color_1;
+  color: $color_2;
+}
+
+@mixin flex_col {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex_center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex_around {
+  display: flex;
+  justify-content: space-around;
+}
+
+//  general parameters css
+//
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration-line: none;
+  text-wrap: $wrapNowrap;
+}
+
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: $color_3;
+  min-height: 100vh;
+  @include flex_col;
+}
+
+header {
+  @include flex_around;
+  align-items: center;
+  margin: auto;
+  width: 50vw;
+  height: 10vw;
+}
+
+.conteiner {
+  @include flex_center;
+  flex-grow: 1;
+  margin: auto;
+  width: 50vw;
+}
+
+footer {
+  @include first_style;
+  @include flex_center;
+  height: 50px;
+}
+
+//  media
+//
+@media screen and (width < 600px) {
+  header {
+    width: 80vw;
+  }
+
+  .cost_table{
+    width: 80vw;
+  }
+
+  .btn_block_hot {
+    margin-top: 40px;
+  }
+}
+
+//@media screen and (width < 430px) and (height < 930px) {
+//  #app {
+//    font-size: x-large;
+//  }
+//}
+
