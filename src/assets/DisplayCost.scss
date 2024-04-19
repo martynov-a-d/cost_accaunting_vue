@@ -1,14 +1,63 @@
-$color_1: #635087;
+@import "App";
+
+button {
+    @include first_style;
+    @include roundingBorder;
+    height: 30px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left: 5px;
+    text-wrap: $wrapNowrap;
+}
+
+.btn_block_hot {
+    @include flex_center;
+    margin-bottom: $marginAFb;
+}
+
+#displayPagination_block {
+    @include flex_col;
+    margin-bottom: $marginAFb;
+}
 
 h1 {
     color: $color_1;
 }
 
-.cost_new_param {
+.cost_new_param, .category_new_param {
     border-color: transparent;
     outline: 0;
 }
 
+select {
+    margin-top: $marginAFb;
+}
+
 .text-danger {
-    color: red;
+    color: $color_attention;
+}
+
+.btn_pagination_block {
+    @include flex_center;
+}
+
+.btn_paginations {
+    width: 30px;
+    margin-top: $marginAFb;
+    margin-bottom: $marginAFb;
+}
+
+.navigation_link {
+    @include flex_center;
+    align-items: center;
+    gap: 40px;
+}
+
+.display_adder {
+    @include flex_center;
+    //@include first_style;
+}
+
+.btn_adder {
+    width: 100px;
 }

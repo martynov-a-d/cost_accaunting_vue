@@ -1,16 +1,18 @@
 <template>
-
-    <div>
+    <div id="displayPagination_block">
         <!-- Data output component -->
         <DataOutput v-bind:costList="this.pageList" />
-        <button v-for="elem in costPagination" v-bind:key="elem.id" v-on:click="choisePagination(elem.id)">{{ elem.name
-        }}</button>
+        <div class="btn_pagination_block">
+          <button class="btn_paginations" v-for="elem in costPagination" v-bind:key="elem.id" v-on:click="choisePagination(elem.id)">{{ elem.name
+            }}</button>
+        </div>
         <p>{{ this.costList.length }}</p>
     </div>
-
 </template>
 
 <script>
+
+import {mapMutations} from "vuex";
 
 export default {
     name: "PaginationBlock",
@@ -26,14 +28,16 @@ export default {
             pagesPagination: 5,
             pageList: [],
             padList: [],
-            pageSelect: "",
+            pageSelect: this.$route.params.page,
+            ModalWindow: '',
         }
     },
     beforeMount() {
     },
     mounted() {
         this.pageHandler()
-        this.choisePagination(1)
+        this.choisePagination(this.$route.params.page)
+        this.$modal.EventBus.$on('delete', (e) => {this.modalDeleteHandler(e)})
     },
     beforeUpdate() {
         this.paginationClean()
@@ -50,7 +54,7 @@ export default {
         },
         pageHandler() {
             let remainderDivision = this.costList.length / this.pagesPagination;
-            if (this.costList.length % this.pagesPagination == 0) {
+            if (this.costList.length % this.pagesPagination === 0) {
                 for (let i = 1; i <= remainderDivision; i++) {
                     this.costPagination.push({ id: i, name: i })
                 }
@@ -61,14 +65,28 @@ export default {
             }
         },
         choisePagination(elem) {
+            if (isNaN(elem)) {
+                elem = "1"
+            }
             this.pageSelect = elem
+            this.updatePageParams(elem)
             this.updatePaginstion()
         },
         updatePaginstion() {
             let page = this.pageSelect * this.pagesPagination
             this.pageList = this.padList
             this.pageList = this.pageList.slice([page - 5], [page])
-        }
+        },
+        updatePageParams(elem) {
+            this.$route.params.page = `${elem}`
+            this.$router.push({ name: "dashboard" })
+        },
+        modalDeleteHandler(e) {
+            this.delCost(e)
+      },
+        ...mapMutations(
+            ['delCost', 'editCost']
+        ),
     },
     computed: {
 
@@ -76,3 +94,7 @@ export default {
 }
 
 </script>
+
+<style lang="scss" scoped>
+@import "../assets/DisplayCost.scss";
+</style>
