@@ -1,8 +1,9 @@
 //  the main colors
 //
-$color_1: #635087;
+$color_1: #635087;  // corpStyle1
 $color_2: #FFFFFF;
 $color_3: #2c3e50;
+$color_4: #e6e6e6;  // corpStyle2
 $color_attention: red;
 
 //  margin after block
@@ -36,6 +37,11 @@ $wrapNowrap: nowrap;
   justify-content: space-around;
 }
 
+@mixin roundingBorder {
+  border-radius: 5px;
+  border-color: transparent;
+}
+
 //  general parameters css
 //
 * {
@@ -53,6 +59,7 @@ a {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: large;
   text-align: center;
   color: $color_3;
   min-height: 100vh;
@@ -60,8 +67,8 @@ a {
 }
 
 header {
-  @include flex_around;
-  align-items: center;
+  @include flex_center;
+  gap: 40px;
   margin: auto;
   width: 50vw;
   height: 10vw;

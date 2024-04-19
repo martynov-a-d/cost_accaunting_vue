@@ -2,8 +2,7 @@
 
 button {
     @include first_style;
-    border-color: transparent;
-    border-radius: 5px;
+    @include roundingBorder;
     height: 30px;
     padding-left: 5px;
     padding-right: 5px;
@@ -18,7 +17,6 @@ button {
 
 #displayPagination_block {
     @include flex_col;
-    height: 30vh;
     margin-bottom: $marginAFb;
 }
 
@@ -50,8 +48,9 @@ select {
 }
 
 .navigation_link {
-    @include flex_around;
+    @include flex_center;
     align-items: center;
+    gap: 40px;
 }
 
 .display_adder {

@@ -4,6 +4,7 @@
     width: 50vw;
     flex-grow: 1;
     margin: auto;
+    min-height: 20vh;
 }
 
 .cost_element {
@@ -30,9 +31,8 @@
 }
 
 #modalWindow {
-    border-radius: 5px;
-    border-color: transparent;
     padding: 5px;
     box-sizing: border-box;
+    @include roundingBorder;
     @include first_style
 }
