@@ -3,8 +3,9 @@
         <!-- Data output component -->
         <DataOutput v-bind:costList="this.pageList" />
         <div class="btn_pagination_block">
-          <button class="btn_paginations" v-for="elem in costPagination" v-bind:key="elem.id" v-on:click="choisePagination(elem.id)">{{ elem.name
-            }}</button>
+            <button class="btn_paginations" v-for="elem in costPagination" v-bind:key="elem.id"
+                v-on:click="choisePagination(elem.id)">{{ elem.name
+                }}</button>
         </div>
         <p>{{ this.costList.length }}</p>
     </div>
@@ -12,7 +13,7 @@
 
 <script>
 
-import {mapMutations} from "vuex";
+import { mapMutations } from "vuex";
 
 export default {
     name: "PaginationBlock",
@@ -37,7 +38,7 @@ export default {
     mounted() {
         this.pageHandler()
         this.choisePagination(this.$route.params.page)
-        this.$modal.EventBus.$on('delete', (e) => {this.modalDeleteHandler(e)})
+        this.$modal.EventBus.$on('delete', (e) => { this.modalDeleteHandler(e) })
     },
     beforeUpdate() {
         this.paginationClean()
@@ -47,6 +48,9 @@ export default {
     methods: {
         pageListUpdater() {
             this.padList = this.costList
+            for (let i = 0; i < this.padList.length; i++) {
+                this.padList[i].pageElem = i + 1
+            }
         },
         paginationClean() {
             this.costPagination = []
@@ -83,7 +87,7 @@ export default {
         },
         modalDeleteHandler(e) {
             this.delCost(e)
-      },
+        },
         ...mapMutations(
             ['delCost', 'editCost']
         ),
